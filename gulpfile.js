@@ -67,7 +67,6 @@ gulp.task('scripts', function() {
             gulp.src(config.bowerDir + 'angular-ui-router/release/angular-ui-router.js'),
             gulp.src(config.bowerDir + 'angular-animate/angular-animate.js'),
             gulp.src(config.bowerDir + 'angular-touch/angular-touch.js'),            
-            gulp.src(config.bowerDir + 'angular-sanitize/angular-sanitize.js'),
             gulp.src(config.bowerDir + 'angular-timeago/dist/angular-timeago.js'),
             gulp.src(config.bowerDir + 'angular-ui-select/dist/select.js'),
             gulp.src(config.bowerDir + 'angular-sc-select/dist/sc-select.js'),
