@@ -1,3 +1,45 @@
 .speaker-item {
-   
+    color: @custom-purple;
+    p {
+        color: @custom-blue-grey;
+        font-size: 10px;
+        font-weight: 700;
+    }
+    i {
+        color: @custom-purple;
+        font-weight: 700;
+    }
+    h5 {
+        color: @custom-purple;
+    }
+    .media {
+        padding: 0 15px;
+        margin-top: 0;
+    }
+    .media-body,
+    .media-left,
+    .media-right {
+        margin: 0;
+    }
+    .heading {
+        background-color: @custom-grey-lighter;
+        font-size: 18px;
+        font-weight: 700;
+    }
+    img {
+        height: 50px;
+        width: 50px;
+        border-radius: 15px;
+    }
+    .odd {
+        background-color: darken(@custom-grey-light, 10%);
+    }
+    .even {
+        background-color: @custom-grey-light;
+    }
+    a:focus,
+    a:hover {
+        outline: none;
+        text-decoration: none;
+    }
 }

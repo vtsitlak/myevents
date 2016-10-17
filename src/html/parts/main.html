@@ -1,0 +1,24 @@
+<!-- main all speakers page -->
+<nav class="navbar navigation-menu navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header col-xs-4">
+                <a class="navbar-brand logo" ui-sref="main"><i class="fa fa-star-o" aria-hidden="true"></i> My Events</a>
+            </div>
+            <div class="col-xs-8 search">
+                <div class="right-inner-addon">
+                    <i class="fa fa-search"></i>
+                    <!-- dynaminc search input -->
+                    <input type="search" ng-model="search" class="form-control" placeholder="Search..." ng-change="filterSpeakers()" />
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- load speakers caching by 10 -->
+<div infinite-scroll='loadMore()' infinite-scroll-distance='2'>
+    <div ng-repeat="speaker in scrolledSpeakers">
+        <speaker-item class="col-xs-12 col-sm-4" speaker='speaker' h="heading(speaker.lastName)" img="imgNull(speaker.image)">
+        </speaker-item>
+    </div>
+</div>

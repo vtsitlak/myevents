@@ -1,7 +1,6 @@
-var app = angular.module('myEvents', ['ngTouch', 'ngAnimate', 'ui.router', 'sc.select', 'yaru22.angular-timeago']);
+var app = angular.module('myEvents', ['ui.router', 'ngStorage', 'infinite-scroll' ]);
 
 // set the routes
-
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     // set html5 mode to avoid # symbol on url
@@ -17,13 +16,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 
     })
     
-    // on speaker state we define parameters for the speaker id 
+    // on speaker state we define parameters for the speaker id and speaker
     .state('speaker', {
-        url: '/article/',
+        url: '/speaker/:_id',
         templateUrl: 'parts/speaker.html',
         controller: 'speakerController',
         params: {
-            _id: null
+            _id: null,
+            speaker: {}
         }
     })
 

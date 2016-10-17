@@ -1,3 +1,52 @@
 .navigation-menu {
+    background-color: @custom-blue;
+    color: @custom-grey-light;
+    a {
+        color: @custom-grey-light;
+        text-decoration: none;
+    }
+    border: none;
+    .form-group {
+        margin: auto!important;
+    }
+    .logo {
+        font-size: 14px;
+        color: @custom-grey-light;
+        text-transform: capitalize!important;
+        @media (min-width: @screen-sm ) {
+            font-size: 18px;
+        }
+    }
+    .return {
+        padding: 15px 0;
+        font-size: 14px!important;
+        height: 50px;
+        line-height: 50px;
+    }
 
+    .navbar-brand {
+        padding-left: 0!important;
+        @media (min-width: @screen-sm ) {
+            margin-left: 0!important;
+        }
+    }
+    .search {
+        top: 7px;
+    }
+    .right-inner-addon {
+        position: relative;
+        color: @custom-purple;
+        .form-control {
+            padding: 6px 15px;
+        }
+        input {
+            padding-right: 30px;
+        }
+        i {
+            position: absolute;
+            right: 0px;
+            padding: 10px 15px;
+            pointer-events: none;
+        }
+    }
 }

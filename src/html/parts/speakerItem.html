@@ -1,0 +1,21 @@
+<!-- speaker item -->
+<div class="speaker-item row">
+    <!-- first letter heading, by last name -->
+    <span ng-show="{{h.show}}" class="text-center heading col-xs-12">{{h.letter}}</span>
+    <!-- odd and even classes -->
+    <div class="media" ng-class="$parent.$even ? 'odd' : 'even'">
+        <a ui-sref="speaker({_id: speaker.id, speaker: speaker })">
+            <div class="media-left media-middle">
+                <!-- return default image in case of null -->
+               <img class="thumbnail-img"  ng-src="{{img}}" alt="icon" />              
+            </div>
+            <div class="media-body media-middle">
+                <h5 class="media-heading">{{speaker.firstName}} {{speaker.lastName}}</h5>
+                <p>{{speaker.jobtitle}} <span ng-show="speaker.jobtitle!=null&&speaker.company!=null">at </span>{{speaker.company}}</p>
+            </div>
+            <div class="media-right media-middle">
+                <h3 class="strong"><i class="fa fa-angle-double-right" aria-hidden="true"></i></h3>
+            </div>
+        </a>
+    </div>
+</div>

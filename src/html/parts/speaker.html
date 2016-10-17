@@ -1,0 +1,25 @@
+<!-- speaker page -->
+<nav class="navbar navigation-menu navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header col-xs-6">
+                <a class="navbar-brand logo" ui-sref="main"><i class="fa fa-star-o" aria-hidden="true"></i> My Events</a>
+            </div>
+            <div class="col-xs-6 text-right">
+                <a ui-sref="main" class="return">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i> back to search
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="speaker thumbnail">
+    <div class="text-center">
+        <img class="thumbnail-img" ng-src="{{imgLink}}" alt="icon" />
+    </div>
+    <div class="caption">
+        <h4 class="media-heading">{{speaker.firstName}} {{speaker.lastName}}</h4>
+        <h5>{{speaker.jobtitle}} <span ng-show="speaker.jobtitle!=null&&speaker.company!=null">at </span>{{speaker.company}}</h5>
+    </div>
+</div>
