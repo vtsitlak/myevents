@@ -117,7 +117,7 @@ app.controller('mainController', ['$scope', 'speakersService', 'updateService', 
         for (i = 0; i < data2.data.length; i++) {
 
 
-            switch (data2.data[i].type.actionType) {
+            switch (data2.data[i]._meta.actionType) {
 
                 case 'm':
                     var index = data1.data.findIndex(x => x.id == data2.data[i].id);
@@ -146,10 +146,46 @@ app.controller('mainController', ['$scope', 'speakersService', 'updateService', 
 
     //get the updates data from url and call synchronisation function
     updateSpeakers = function() {
-        var update = {};
+        var update = {data:[]};
         updateService.success(function(data) {
-            update = data;
-            synchronisation($localStorage.speakers, update);
+            //comtrol to check if we have new records
+            var c = 0;
+            if ($localStorage.actionDate) {
+                //we get only the new records, the ones more recent that saved on localStorage actionDate
+                var i = 0;
+                var temp = $localStorage.actionDate;
+                for (i = 0; i < data.data.length; i++) {
+
+                    if (data.data[i]._meta.actionDate > $localStorage.actionDate) {
+                        update.data.push(data.data[i]);
+                        c++
+                        if (data.data[i]._meta.actionDate > temp) {
+                            temp = data.data[i]._meta.actionDate;
+                        }
+                    }
+                }
+                $localStorage.actionDate = temp;
+
+            } else {
+                
+                update = data;
+                //we set the localStorage actionDate, as the maximum actionDate from our current update data
+                var temp = data.data[0].type.actionDate;
+                var i = 1;
+                for (i = 1; i < data.data.length; i++) {
+                    if (data.data[i]._meta.actionDate > temp) {
+                        temp = data.data[i]._meta.actionDate;
+                    }
+                }
+                $localStorage.actionDate = temp;
+                c = data.data.length;
+
+            }
+            console.log('c='+c);
+            if (c > 0) {
+                synchronisation($localStorage.speakers, update);
+            }
+
         }).error(function(data) {
             console.log('Error on getting the data');
         });
@@ -194,7 +230,7 @@ app.controller('mainController', ['$scope', 'speakersService', 'updateService', 
     //call the data init function
     getSpeakers();
 
-    //update data every 5 minutes
-    $interval(updateSpeakers, 300000);
+    //update data every 5 minutes 
+    $interval(updateSpeakers, 3000);
 
 }]);
