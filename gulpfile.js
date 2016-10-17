@@ -20,7 +20,6 @@ var rename = require('gulp-rename');
 var less = require('gulp-less');
 var series = require('stream-series');
 var minifyHTML = require('gulp-minify-html');
-var jsonminify = require('gulp-jsonminify');
 var jsmin = require('gulp-jsmin');
 var cleanCSS = require('gulp-clean-css');
 var imageop = require('gulp-image-optimization');
@@ -51,13 +50,6 @@ gulp.task('html', function() {
         .pipe(gulp.dest(config.dest));
 });
 
-// json minify
-gulp.task('json', function() {
-    return gulp.src(config.jsonPath + '*.json')
-        .pipe(jsonminify())
-        .pipe(gulp.dest(config.dest + 'data'));
-});
-
 
 // Concatenate & Minify JS 
 gulp.task('scripts', function() {
@@ -65,11 +57,8 @@ gulp.task('scripts', function() {
             gulp.src(config.bowerDir + 'jquery/dist/jquery.js'),
             gulp.src(config.bowerDir + 'angular/angular.js'),
             gulp.src(config.bowerDir + 'angular-ui-router/release/angular-ui-router.js'),
-            gulp.src(config.bowerDir + 'angular-animate/angular-animate.js'),
-            gulp.src(config.bowerDir + 'angular-touch/angular-touch.js'),            
-            gulp.src(config.bowerDir + 'angular-timeago/dist/angular-timeago.js'),
-            gulp.src(config.bowerDir + 'angular-ui-select/dist/select.js'),
-            gulp.src(config.bowerDir + 'angular-sc-select/dist/sc-select.js'),
+            gulp.src(config.bowerDir + 'ngstorage/ngStorage.js'),
+            gulp.src('./node_modules/ng-infinite-scroll/build/ng-infinite-scroll.js'),
             gulp.src(config.bowerDir + 'bootstrap/dist/js/bootstrap.js'),
             gulp.src(config.jsDir + '/jquery/**/*.js'),
             gulp.src(config.jsDir + '/angular/**/*.js')
@@ -97,13 +86,11 @@ gulp.task('less', function() {
 gulp.task('css', function() {
     return series(
             
-            gulp.src(config.bowerDir + 'angular-ui-select/dist/select.css'),
-            gulp.src(config.bowerDir + 'angular-sc-select/dist/sc-select.css'),
             gulp.src(config.lessPath + 'all-less-compiled.css')
 
         )
         .pipe(concat('main.css'))
-      //  .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(rename({
             suffix: '.min'
         }))
@@ -137,4 +124,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['bower', 'fonts', 'html', 'img', 'json', 'scripts', 'less', 'css', 'watch']);
+gulp.task('default', ['bower', 'fonts', 'html', 'img', 'scripts', 'less', 'css', 'watch']);
