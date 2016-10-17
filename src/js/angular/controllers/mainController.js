@@ -231,6 +231,6 @@ app.controller('mainController', ['$scope', 'speakersService', 'updateService', 
     getSpeakers();
 
     //update data every 5 minutes 
-    $interval(updateSpeakers, 3000);
+    $interval(updateSpeakers, 300000);
 
 }]);
