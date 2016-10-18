@@ -8,5 +8,8 @@ Live demo
 http://testmyevents.co.nf/ 
 
 Installation:
-npm install 
+
+npm install
+
+
 gulp
